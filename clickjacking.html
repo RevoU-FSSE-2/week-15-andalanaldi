@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clickjacking Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    
+        #overlay input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="target" src="http://localhost:3000/click-jacking"></iframe>
+    <script>
+    </script>
+</body>
+</html>

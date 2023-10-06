@@ -1,0 +1,1 @@
+http://localhost:3000/xss?name=%3Cscript%3Econsole.log(+document.cookie)%3C/script%3E

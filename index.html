@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CORS Test</title>
+</head>
+<body>
+  <h1>CORS Test</h1>
+  <p id='message'></p>
+  <a href="multipage.html">Go to multipage</a>
+  <a href="client-x.html">Go to Client X</a>
+  <a href="client-y.html">Go to Client Y</a>
+  <a href="vulnerability.html">someone UI</a>
+  <a href="clickjacking.html">clickjacking test</a>
+  <script>
+    fetch('http://localhost:3000/cors') // panggil API express
+      .then(response => response.json())
+      .then(data => document.getElementById('message').textContent = data.message)
+      .catch(error => document.getElementById('message').textContent = error);
+  </script>
+</body>
+</html>

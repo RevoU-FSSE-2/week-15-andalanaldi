@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Choose Content-Type</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+  <h1>Choose Content-Type</h1>
+  <input type="radio" id="html" name="content-type" value="text/html">
+  <label for="html">text/html</label><br>
+  <input type="radio" id="json" name="content-type" value="application/json">
+  <label for="json">application/json</label><br>
+  <button id="fetch">Fetch</button>
+  <h2>Response:</h2>
+  <pre id="response"></pre>
+
+  <script>
+    $(document).ready(function() {
+      $('#fetch').click(function() {
+        var contentType = $('input[name="content-type"]:checked').val();
+        $.ajax({
+          url: 'http://localhost:3000/sample-header',
+          headers: {
+            'Accept': contentType
+          },
+          success: function(data, status, xhr) {
+            var contentType = xhr.getResponseHeader('Content-Type');
+            if (contentType.includes('text/html')) {
+              $('#response').html(data);
+            } else {
+              $('#response').text(JSON.stringify(data, null, 2));
+            }
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            $('#response').text('Error: ' + textStatus);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+

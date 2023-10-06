@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Client Y</title>
+</head>
+<body>
+  <h1>Welcome to Client Y</h1>
+  <p id='message'></p>
+  <button id='post'>Post Data</button>
+  <script>
+    fetch('http://localhost:3000/client-y')
+      .then(response => response.json())
+      .then(data => document.getElementById('message').textContent = data.message)
+      .catch(error => document.getElementById('message').textContent = error);
+
+    document.getElementById('post').addEventListener('click', function() {
+      fetch('http://localhost:3000/client-y', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({data: 'Hello World'})
+      })
+      .then(response => response.json())
+      .then(data => document.getElementById('message').textContent = JSON.stringify(data.message))
+      .catch(error => document.getElementById('message').textContent = error);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Client X</title>
+</head>
+<body>
+  <h1>Welcome to Client X</h1>
+  <p id='message'></p>
+  <button id='post'>Post Data</button>
+  <script>
+    fetch('http://localhost:3000/client-x')
+      .then(response => response.json())
+      .then(data => document.getElementById('message').textContent = data.message)
+      .catch(error => document.getElementById('message').textContent = error);
+
+    document.getElementById('post').addEventListener('click', function() {
+      fetch('http://localhost:3000/client-x', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-KEY': '1234567890'
+        },
+        body: JSON.stringify({data: 'Hello World'})
+      })
+      .then(response => response.json())
+      .then(data => document.getElementById('message').textContent = JSON.stringify(data.message))
+      .catch(error => document.getElementById('message').textContent = error);
+    });
+  </script>
+</body>
+</html>
